@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ev-bg: #050c14;
+  --color-ev-panel: #0d1928;
+  --color-ev-card: #0a1520;
+  --color-ev-cyan: #00d4ff;
+  --color-ev-blue: #0066ff;
+  --color-ev-purple: #8b5cf6;
+  --color-ev-green: #00ff88;
+  --color-ev-high: #ff3b3b;
+  --color-ev-medium: #ff8c00;
+  --color-ev-low: #00d084;
+  --color-ev-border: rgba(0,212,255,0.18);
+  --color-ev-text: #b8cde0;
+  --color-ev-muted: #4a6680;
+}
+
+:root {
+  --background: #050c14;
+  --foreground: #b8cde0;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Courier New', Courier, monospace;
+  overflow: hidden;
+  height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #0d1928;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.3);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.6);
+}
+
+/* Glow utilities */
+.glow-cyan {
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.4), 0 0 30px rgba(0, 212, 255, 0.1);
+}
+.glow-cyan-text {
+  text-shadow: 0 0 8px rgba(0, 212, 255, 0.8);
+}
+.glow-red {
+  box-shadow: 0 0 12px rgba(255, 59, 59, 0.5);
+}
+.glow-orange {
+  box-shadow: 0 0 12px rgba(255, 140, 0, 0.5);
+}
+.glow-green {
+  box-shadow: 0 0 12px rgba(0, 208, 132, 0.5);
+}
+
+/* Panel glass */
+.glass {
+  background: rgba(13, 25, 40, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 212, 255, 0.12);
+}
+
+/* Scan line animation */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+.scanline {
+  animation: scanline 8s linear infinite;
+}
+
+/* Pulse dot — slower, gentler on the eye */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.85); }
+}
+.pulse-dot {
+  animation: pulseDot 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+/* Alert slide in — spring-like, easier on eyes */
+@keyframes slideIn {
+  0%   { opacity: 0; transform: translateX(20px); }
+  60%  { opacity: 1; transform: translateX(-3px); }
+  80%  { transform: translateX(2px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+.alert-enter {
+  animation: slideIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Fade in — for stream/camera switches */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Panel collapse/expand */
+@keyframes panelFadeIn {
+  from { opacity: 0; transform: scaleX(0.96); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+.panel-enter {
+  animation: panelFadeIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform-origin: left center;
+}
+
+/* Grid scan */
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.06; }
+  50% { opacity: 0.12; }
+}
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridPulse 4s ease-in-out infinite;
+}
