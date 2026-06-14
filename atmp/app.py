@@ -167,7 +167,7 @@ def detection_ws(ws):
                 )
 
             # Store violence snapshot (respects per-camera dedup interval)
-            violence_bboxes = [bb for bb in metadata.bboxes if bb.label.lower() == "violence"]
+            violence_bboxes = [bb for bb in metadata.bboxes if bb.label == "violence"]
             if violence_bboxes and detection_store.can_store(ACTIVE_CAMERA_ID):
                 frame = pipeline.get_processed_frame()
                 if frame is not None:
